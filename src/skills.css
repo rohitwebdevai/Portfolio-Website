@@ -1,0 +1,114 @@
+:root {
+  --bg-color: #f8fafc;
+  --badge-bg: #ffffff;
+  --text-color: #1e293b;
+  --shade-color: rgba(0, 0, 0, 0.08);
+  --shade-hover: rgba(0, 0, 0, 0.15);
+  --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#page1 {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px 150px;
+  padding: 40px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* ... keep the rest exactly as you wrote ... */
+
+
+        /* Individual Clusters */
+        .cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Cluster Alignments matching the image */
+        .cluster.top-left { align-items: flex-end; }
+        .cluster.top-right { align-items: flex-start; }
+        .cluster.bottom-left { align-items: flex-start; }
+        .cluster.bottom-right { align-items: flex-end; }
+
+        .cluster-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* Badge Styling & Border Shade */
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px;
+            background-color: var(--badge-bg);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 15px;
+            font-weight: 500;
+            /* The specific border shade requirement */
+            box-shadow: 0 4px 15px var(--shade-color), 0 1px 3px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.02);
+            cursor: pointer;
+            
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUpIn 0.7s var(--animation-timing) forwards;
+            animation-delay: var(--delay);
+            
+            /* Hover transitions */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px var(--shade-hover), 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Icon constraints */
+        .badge img, .badge svg {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        /* Rendering Animation Keyframes */
+        @keyframes fadeUpIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .skills-container { gap: 80px 40px; }
+        }
+        @media (max-width: 768px) {
+            .skills-container { 
+                grid-template-columns: 1fr; 
+                gap: 60px; 
+            }
+            .cluster { align-items: center !important; }
+            .cluster-row { justify-content: center; }
+        }
